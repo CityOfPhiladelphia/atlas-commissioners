@@ -237,7 +237,7 @@ mapboard({
     voting,
     // nearby,
   ],
-  defaultTopic: 'property',
+  defaultTopic: 'voting',
   components: [
     {
       type: 'topic',
