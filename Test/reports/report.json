@@ -1,0 +1,93 @@
+{
+  "startTime": "2022-01-31T18:31:28.812Z",
+  "endTime": "2022-01-31T18:32:50.770Z",
+  "userAgents": [
+    "Firefox 96.0 / Windows 10"
+  ],
+  "passed": 5,
+  "total": 5,
+  "skipped": 0,
+  "fixtures": [
+    {
+      "name": "page landing verification",
+      "path": "C:\\Users\\Andy.Rothwell\\Projects\\atlas\\Test\\tests\\testBasePage.ts",
+      "meta": {},
+      "tests": [
+        {
+          "name": "page landing verification",
+          "meta": {},
+          "errs": [],
+          "durationMs": 8946,
+          "unstable": false,
+          "screenshotPath": null,
+          "skipped": false
+        }
+      ]
+    },
+    {
+      "name": "Building search page verification",
+      "path": "C:\\Users\\Andy.Rothwell\\Projects\\atlas\\Test\\tests\\testBuildingSearchPage.ts",
+      "meta": {},
+      "tests": [
+        {
+          "name": "Building search page verification",
+          "meta": {},
+          "errs": [],
+          "durationMs": 19884,
+          "unstable": false,
+          "screenshotPath": null,
+          "skipped": false
+        }
+      ]
+    },
+    {
+      "name": "Condominiums search page verification",
+      "path": "C:\\Users\\Andy.Rothwell\\Projects\\atlas\\Test\\tests\\testCondominiumSearchPage.ts",
+      "meta": {},
+      "tests": [
+        {
+          "name": "Condominiums search page verification",
+          "meta": {},
+          "errs": [],
+          "durationMs": 17907,
+          "unstable": false,
+          "screenshotPath": null,
+          "skipped": false
+        }
+      ]
+    },
+    {
+      "name": "DorNoPwd  search page verification",
+      "path": "C:\\Users\\Andy.Rothwell\\Projects\\atlas\\Test\\tests\\testDorSearchPage.ts",
+      "meta": {},
+      "tests": [
+        {
+          "name": "DorNoPwd search page verification",
+          "meta": {},
+          "errs": [],
+          "durationMs": 16474,
+          "unstable": false,
+          "screenshotPath": null,
+          "skipped": false
+        }
+      ]
+    },
+    {
+      "name": "PwdNoDor search page verification",
+      "path": "C:\\Users\\Andy.Rothwell\\Projects\\atlas\\Test\\tests\\testPwdSearchPage.ts",
+      "meta": {},
+      "tests": [
+        {
+          "name": "PwdNoDor search page verification",
+          "meta": {},
+          "errs": [],
+          "durationMs": 18722,
+          "unstable": false,
+          "screenshotPath": null,
+          "skipped": false
+        }
+      ]
+    }
+  ],
+  "warnings": []
+}
