@@ -73,15 +73,16 @@ import zoningOverlay from './data-sources/zoning-overlay';
 // import neighboringProperties from './data-sources/neighboring-properties';
 
 // Topics
-import property from './topics/property';
-import condos from './topics/condos';
-import deeds from './topics/deeds';
-import li from './topics/li';
-import zoning from './topics/zoning';
+// import property from './topics/property';
+// import condos from './topics/condos';
+// import deeds from './topics/deeds';
+// import li from './topics/li';
+// import zoning from './topics/zoning';
 // import polling from './topics/polling';
 // import rcoTopic from './topics/rco';
-import nearby from './topics/nearby';
+// import nearby from './topics/nearby';
 import voting from './topics/voting';
+import voting2 from './topics/voting2';
 
 import exclamationCallout from './components/ExclamationCallout';
 import exclamationContentTopic from './components/ExclamationContentTopic';
@@ -236,23 +237,32 @@ mapboard({
     // polling,
     // rcoTopic,
     voting,
+    voting2,
     // nearby,
   ],
   defaultTopic: 'voting',
   components: [
     {
-      type: 'topic',
-      key: 'voting',
-      topicKey: 'voting',
-      props: {
-        topicKey: 'voting',
-      },
+      type: 'topic-set',
       options: {
-        topicKey: 'voting',
-        // voting,
-        // defaultTopic: 'property',
+        defaultTopic: 'voting',
       },
     },
   ],
+  // components: [
+  //   {
+  //     type: 'topic',
+  //     key: 'voting',
+  //     topicKey: 'voting',
+  //     props: {
+  //       topicKey: 'voting',
+  //     },
+  //     options: {
+  //       topicKey: 'voting',
+  //       // voting,
+  //       // defaultTopic: 'property',
+  //     },
+  //   },
+  // ],
   i18n: i18n.i18n,
 });
