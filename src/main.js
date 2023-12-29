@@ -120,13 +120,14 @@ if (host === 'cityatlas-dev.phila.gov') {
 mapboard({
   // defaultAddress: '1234 MARKET ST',
   // plugin: true,
+  // app: {},
   headerImg: 'philadelphia-city-commissioners-logo-edit_2.png',
   smallHeaderImg: 'philadelphia-city-commissioners-logo-edit_small.png',
   resetDataOnGeocode: true,
   customComps,
   header: {
     enabled: true,
-    text: 'Voting',
+    text: 'Voter Hub',
   },
   panels: [
     'topics',

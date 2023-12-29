@@ -7,17 +7,18 @@ let i18n = {
     header: 'i18nBanner',
     enabled: true,
     topics: [ 'voting' ],
-    languages: [ 'en-US', 'es' ],
-    // languages: [
-    //   {
-    //     language: 'en-US',
-    //     title: 'English',
-    //   },
-    //   {
-    //     language: 'es',
-    //     title: 'Español',
-    //   },
-    // ],
+    // topics: [],
+    // languages: [ 'en-US', 'es' ],
+    languages: [
+      {
+        language: 'en-US',
+        title: 'English',
+      },
+      {
+        language: 'es',
+        title: 'Español',
+      },
+    ],
     footer: true,
     data: {
       locale: 'en-US',
