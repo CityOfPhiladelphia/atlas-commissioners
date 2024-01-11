@@ -6,9 +6,9 @@ const nth = transforms.nth.transform;
 let $t;
 
 export default {
-  key: 'voting',
-  icon: 'gavel',
-  label: 'Voting',
+  key: 'mail-in-voting',
+  icon: 'envelope',
+  label: 'Mail-in Voting',
   dataSources: [ 'divisions', 'pollingPlaces', 'electedOfficials', 'nextElectionAPI' ],
   errorMessage: function() {
     return 'No voting assignment found for this address.';

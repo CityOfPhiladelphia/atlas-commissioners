@@ -29,7 +29,10 @@ import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons/faMapMarkerAlt
 import { faLandmark } from '@fortawesome/free-solid-svg-icons/faLandmark';
 import { faBuilding } from '@fortawesome/free-solid-svg-icons/faBuilding';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons/faExclamationTriangle';
-library.add(faDotCircle, faHome, faBook, faWrench, faUniversity, faGavel, faMapMarkerAlt, faLandmark, faBuilding, faExclamationTriangle);
+import { faStar } from '@fortawesome/free-solid-svg-icons/faStar';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
+import { faFlagUsa } from '@fortawesome/free-solid-svg-icons/faFlagUsa';
+library.add(faFlagUsa, faEnvelope, faStar, faDotCircle, faHome, faBook, faWrench, faUniversity, faGavel, faMapMarkerAlt, faLandmark, faBuilding, faExclamationTriangle);
 
 import accounting from 'accounting';
 import mapboard from '@phila/mapboard/src/main.js';
@@ -81,20 +84,30 @@ import zoningOverlay from './data-sources/zoning-overlay';
 // import polling from './topics/polling';
 // import rcoTopic from './topics/rco';
 // import nearby from './topics/nearby';
-import voting from './topics/voting';
-import voting2 from './topics/voting2';
+import pollingPlace from './topics/polling-place.js';
+import ballot from './topics/ballot.js';
+import mailInVoting from './topics/mail-in-voting.js';
+import officials from './topics/elected-officials.js';
 
 import exclamationCallout from './components/ExclamationCallout';
 import exclamationContentTopic from './components/ExclamationContentTopic';
 import exclamationContentGreeting from './components/ExclamationContentGreeting';
-import greetingVoting from './components/GreetingVoting';
+import greetingDefault from './components/GreetingDefault';
+import greetingPollingPlace from './components/GreetingPollingPlace';
+import greetingBallot from './components/GreetingBallot';
+import greetingMailInVoting from './components/GreetingMailInVoting';
+import greetingElectedOfficials from './components/GreetingElectedOfficials';
 import i18nBanner from '@phila/mapboard/src/components/i18nBanner.vue';
 
 const customComps = {
   'exclamationCallout': exclamationCallout,
   'exclamationContentTopic': exclamationContentTopic,
   'exclamationContentGreeting': exclamationContentGreeting,
-  'greetingvoting': greetingVoting,
+  'greetingdefault': greetingDefault,
+  'greetingpolling-place': greetingPollingPlace,
+  'greetingballot': greetingBallot,
+  'greetingmail-in-voting': greetingMailInVoting,
+  'greetingelected-officials': greetingElectedOfficials,
   'i18nBanner': i18nBanner,
 };
 
@@ -229,23 +242,17 @@ mapboard({
     // neighboringProperties,
   },
   topics: [
-    // property,
-    // condos,
-    // deeds,
-    // li,
-    // zoning,
-    // polling,
-    // rcoTopic,
-    voting,
-    voting2,
-    // nearby,
+    ballot,
+    pollingPlace,
+    mailInVoting,
+    officials,
   ],
-  defaultTopic: 'voting',
+  defaultTopic: 'pollingPlace',
   components: [
     {
       type: 'topic-set',
       options: {
-        defaultTopic: 'voting',
+        defaultTopic: 'pollingPlace',
       },
     },
   ],

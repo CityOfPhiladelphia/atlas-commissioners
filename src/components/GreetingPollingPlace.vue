@@ -3,40 +3,41 @@
     :style="greetingStyle"
     class="columns medium-20 medium-centered greeting"
   >
-    <h2>{{ $t('voting.introPage.introTitle') }}</h2>
+    <h2>{{ $t('pollingPlace.introPage.introTitle') }}</h2>
     <!-- <exclamation-callout
       :options="exclamationCalloutOptions"
     >
     </exclamation-callout> -->
 
-    <!-- <p>{{ $t('voting.introPage.p2') }}</p> -->
+    <!-- <p>{{ $t('pollingPlace.introPage.p2') }}</p> -->
 
-    <p>{{ $t('voting.introPage.p3') }}</p>
+    <p>{{ $t('pollingPlace.introPage.p3') }}</p>
     <div class="custom-section">
       <ul class="custom-ul">
-        <li>{{ $t('voting.introPage.ul1.li2') }}</li>
-        <li>{{ $t('voting.introPage.ul1.li3') }}</li>
-        <li>{{ $t('voting.introPage.ul1.li4') }}</li>
+        <li>{{ $t('pollingPlace.introPage.ul1.li1') }}</li>
+        <li>{{ $t('pollingPlace.introPage.ul1.li2') }}</li>
       </ul>
     </div>
 
-    <p><b>{{ $t('voting.introPage.p4_b') }}</b>{{ $t('voting.introPage.p4') }}</p>
+    <p><b>{{ $t('default.introPage.p4_b') }}</b>{{ $t('default.introPage.p4') }}</p>
 
-    <p class="border">
-      {{ $t('voting.introPage.p5') }}
-    </p>
+    <p
+      class="border"
+      v-html="$t('default.introPage.p5')"
+    />
 
     <div
       class="section-header"
       :style="{ 'background-color': '#F0F0F0', 'color': 'black' }"
     >
-      <b>{{ $t('voting.introPage.relatedContent') }}</b>
+      <b>{{ $t('pollingPlace.introPage.relatedContent') }}</b>
     </div>
     <div class="custom-section">
       <ul class="custom-ul">
-        <li><a target="_blank" href="https://www.phila.gov/voting">{{ $t('voting.introPage.link2') }}</a></li>
-        <li><a target="_blank" href="https://www.pavoterservices.pa.gov/pages/ballottracking.aspx">{{ $t('voting.introPage.link3') }}</a></li>
-        <!-- <li><a target="_blank" href="https://www.pavoterservices.pa.gov/Pages/voterregistrationstatus.aspx">{{ $t('voting.introPage.link4') }}</a></li> -->
+        <li><a target="_blank" href="https://www.pavoterservices.pa.gov/pages/voterregistrationstatus.aspx">{{ $t('default.introPage.link1') }}</a></li>
+        <li><a target="_blank" href="https://www.pavoterservices.pa.gov/pages/ballottracking.aspx">{{ $t('default.introPage.link3') }}</a></li>
+        <li><a href="/mail-in-voting">{{ $t('default.introPage.link4') }}</a></li>
+        <li><a href="/ballot">{{ $t('default.introPage.link7') }}</a></li>
       </ul>
     </div>
 
@@ -70,7 +71,7 @@ export default {
   computed: {
     exclamationCalloutSlots() {
       return {
-        text: 'voting.introPage.p1',
+        text: 'pollingPlace.introPage.p1',
       };
     },
     exclamationCalloutOptions() {
