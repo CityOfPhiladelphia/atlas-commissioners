@@ -99,7 +99,7 @@ export default {
   },
   "pollingPlace": {
     "introPage": {
-      "introTitle": "Find your polling place on Atlas",
+      "introTitle": "Find your polling place",
       "p3": "Search your home address or click on the map to find:",
       "ul1": {
         "li1": "Your designated polling place",
