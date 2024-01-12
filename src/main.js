@@ -247,13 +247,13 @@ mapboard({
     mailInVoting,
     officials,
   ],
-  defaultTopic: 'pollingPlace',
+  defaultTopic: 'ballot',
   components: [
     {
       type: 'topic-set',
-      options: {
-        defaultTopic: 'pollingPlace',
-      },
+      // options: {
+      //   defaultTopic: 'polling-place',
+      // },
     },
   ],
   // components: [
