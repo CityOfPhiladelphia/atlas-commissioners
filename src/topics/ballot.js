@@ -52,6 +52,36 @@ export default {
         text: 'ballot.topic.callout1.text',
       },
     },
+
+    {
+      type: 'vertical-table',
+      slots: {
+        title: 'ballot.topic.table1.title',
+      },
+    },
+
+    {
+      type: 'paragraph',
+      slots: {
+        text: 'ballot.topic.paragraph1.text',
+        vshowProp: true,
+      },
+    },
+
+    {
+      type: 'vertical-table',
+      slots: {
+        title: 'ballot.topic.table2.title',
+      },
+    },
+
+    {
+      type: 'externalLink',
+      options: {
+        href: 'https://vote.phila.gov/voting/registering-to-vote',
+        data: 'ballot.topic.links.link1',
+      },
+    },
   ],
   // zoomToShape: [ 'geojsonForTopic', 'markersForTopic' ],
   // geojsonForTopic: {

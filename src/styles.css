@@ -2,6 +2,11 @@
   max-width: 250px;
 }
 
+.table-title {
+  font-family: "Open Sans", Helvetica, Roboto, Arial, sans-serif;
+  font-weight: bold;
+}
+
 /* .greeting > h2 {
   margin-bottom: 30px;
 }
