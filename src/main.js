@@ -50,28 +50,29 @@ import greeting from './general/greeting';
 // data sources
 import threeOneOneCarto from './data-sources/311-carto';
 import condoList from './data-sources/condo-list';
-import crimeIncidents from './data-sources/crime-incidents';
 import divisions from './data-sources/divisions';
-import dorCondoList from './data-sources/dor-condo-list';
-import dorDocuments from './data-sources/dor-documents';
 import electedOfficials from './data-sources/elected-officials';
 import electedOfficialsFuture from './data-sources/elected-officials-future';
-import liBusinessLicenses from './data-sources/li-business-licenses';
-import liInspections from './data-sources/li-inspections';
-import liPermits from './data-sources/li-permits';
-import liViolations from './data-sources/li-violations';
-import nearbyZoningAppeals from './data-sources/nearby-zoning-appeals';
 import nextElectionAPI from './data-sources/election-next';
 import opa from './data-sources/opa';
 import pollingPlaces from './data-sources/polling-places';
-import rco from './data-sources/rco';
-import regmaps from './data-sources/regmaps';
-import vacantIndicatorsPoints from './data-sources/vacant-indicator-points';
-import zoningAppeals from './data-sources/zoning-appeals';
-import zoningBase from './data-sources/zoning-base';
-import zoningDocs from './data-sources/zoning-docs';
-import zoningDocsEclipse from './data-sources/zoning-docs-eclipse';
-import zoningOverlay from './data-sources/zoning-overlay';
+import votingSites from './data-sources/voting-sites';
+// import crimeIncidents from './data-sources/crime-incidents';
+// import dorCondoList from './data-sources/dor-condo-list';
+// import dorDocuments from './data-sources/dor-documents';
+// import liBusinessLicenses from './data-sources/li-business-licenses';
+// import liInspections from './data-sources/li-inspections';
+// import liPermits from './data-sources/li-permits';
+// import liViolations from './data-sources/li-violations';
+// import nearbyZoningAppeals from './data-sources/nearby-zoning-appeals';
+// import rco from './data-sources/rco';
+// import regmaps from './data-sources/regmaps';
+// import vacantIndicatorsPoints from './data-sources/vacant-indicator-points';
+// import zoningAppeals from './data-sources/zoning-appeals';
+// import zoningBase from './data-sources/zoning-base';
+// import zoningDocs from './data-sources/zoning-docs';
+// import zoningDocsEclipse from './data-sources/zoning-docs-eclipse';
+// import zoningOverlay from './data-sources/zoning-overlay';
 // import charterSchools from './data-sources/charter-schools';
 // import neighboringProperties from './data-sources/neighboring-properties';
 
@@ -216,28 +217,29 @@ mapboard({
   dataSources: {
     threeOneOneCarto,
     condoList,
-    crimeIncidents,
     divisions,
-    dorCondoList,
-    dorDocuments,
     electedOfficials,
     electedOfficialsFuture,
-    liBusinessLicenses,
-    liInspections,
-    liPermits,
-    liViolations,
-    nearbyZoningAppeals,
     nextElectionAPI,
     opa,
     pollingPlaces,
-    rco,
-    regmaps,
-    vacantIndicatorsPoints,
-    zoningAppeals,
-    zoningBase,
-    zoningDocs,
-    zoningDocsEclipse,
-    zoningOverlay,
+    votingSites,
+    // crimeIncidents,
+    // dorCondoList,
+    // dorDocuments,
+    // liBusinessLicenses,
+    // liInspections,
+    // liPermits,
+    // liViolations,
+    // nearbyZoningAppeals,
+    // rco,
+    // regmaps,
+    // vacantIndicatorsPoints,
+    // zoningAppeals,
+    // zoningBase,
+    // zoningDocs,
+    // zoningDocsEclipse,
+    // zoningOverlay,
     // charterSchools,
     // neighboringProperties,
   },

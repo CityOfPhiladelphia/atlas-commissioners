@@ -111,20 +111,11 @@ export default {
       "link4": "Confirm that you're registered to vote",
     },
     "topic": {
-      "exclamationCallout1": {
-        "p1_b": "COVID-19 info: ",
-        "p1": "Many polling places for the May 2021 Municipal Primary have changed. Check here to confirm the location and more before you head to the polls on election day.",
-        "p2_b": "Mail in ballots:",
-        "p2_1": "Applications must be received by your county election office no later than Tuesday, October 27th. Find places you can",
-        "p2_a": "get and return mail-in ballots",
-        "p2_2": "in person.",
-        "p4": "Request a mail-in ballot.",
-        "p5": "If you are planning on voting in person, please confirm your polling place and make voting arrangements prior to the election.",
-      },
       "badge1": {
         "header": "Next Eligible Election Is",
         "content": "November 3, 2020",
       },
+      "externalLink1": " Report an issue at this polling place on election day through our portal ",
       "hours": "Hours",
       "previewBallot": "Preview ballot ",
       "electedRep": "Elected Representatives",
@@ -136,6 +127,8 @@ export default {
       "location": "Location",
       "accessibility": "Accessibility",
       "parking": "Parking",
+      "lastUpdated": "Last Updated",
+      "lastUpdatedSentence": "This has been the polling place for this division since ",
       "districtCouncilMember": "District Council Member",
       "cityHallOffice": "City Hall Office",
       "currentTerm": "Current Term",
@@ -179,14 +172,8 @@ export default {
     },
     "topic": {
       "exclamationCallout1": {
-        "p1_b": "COVID-19 info: ",
-        "p1": "Many polling places for the May 2021 Municipal Primary have changed. Check here to confirm the location and more before you head to the polls on election day.",
-        "p2_b": "Mail in ballots:",
-        "p2_1": "Applications must be received by your county election office no later than Tuesday, October 27th. Find places you can",
-        "p2_a": "get and return mail-in ballots",
-        "p2_2": "in person.",
-        "p4": "Request a mail-in ballot.",
-        "p5": "If you are planning on voting in person, please confirm your polling place and make voting arrangements prior to the election.",
+        "p1": "Mail-in ballot dropoff locations and availability may change for each election.\
+        Check back closer to election day to get updated details about where you can drop off your mail-in ballot.",
       },
       "badge1": {
         "header": "Next Eligible Election Is",

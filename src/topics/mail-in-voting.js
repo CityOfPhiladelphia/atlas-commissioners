@@ -15,109 +15,148 @@ export default {
   },
   components: [
     {
-      type: 'vertical-table',
-      options: {
-        nullValue: 'None',
-        externalLink: {
-          action: function() {
-            return 'voting.topic.verticalTable2.link';
-          },
-          href: function(state) {
-            return '//vote.phila.gov/voting/current-elected-officials/';
-          },
-        },
-      },
-
+      type: 'exclamation-callout',
       slots: {
-        title: 'voting.topic.electedRep',
-        fields: [
-          {
-            label: 'voting.topic.districtCouncilMember',
-            value: function(state) {
-              const council = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office_label == "City Council";
-              });
-              return '<a href="http://' + council[0].website + '" target="_blank">' +
-                council[0].first_name +" " +council[0].last_name + " - " + nth(council[0].district) + " Council District </a>";
-            },
-          },
-          {
-            label: 'voting.topic.cityHallOffice',
-            value: function(state) {
-              const council = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office_label == "City Council";
-              });
-              return council[0].main_contact_address_2 + '<br>' +
-                     phone(council[0].main_contact_phone_1) + ", " + phone(council[0].main_contact_phone_2) + '<br>\
-                      F: '+ phone(council[0].main_contact_fax) + ' <br>\
-                      <b><a href=mailto:"' + council[0].email + '">' + council[0].email + '</a></b>';
-            },
-          },
-          {
-            label: 'voting.topic.currentTerm',
-            value: function(state) {
-              const council = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office_label == "City Council";
-              });
-              return council[0].next_election - 4 + ' - ' + council[0].next_election;
-            },
-          },
-        ],
+        text: 'mailInVoting.topic.exclamationCallout1.p1',
       },
-    }, // end table
+    },
     {
-      type: 'vertical-table',
+      type: 'horizontal-table',
       options: {
-        subtitle: 'voting.topic.redistrictingSubtitle',
-        // subtitle: 'Some addresses will be represented by a new city council district starting in 2024. Residents will vote in the new district in the 2023 primary and general elections.',
-        nullValue: 'None',
-        externalLink: {
-          action: function() {
-            // return 'Read more about the redistricting process ';
-            return 'voting.topic.redistrictingProcess';
+        id: 'mailInVotingTable',
+        sort: {
+          select: true,
+          sortFields: [
+            'distance',
+            'location',
+            // 'date',
+          ],
+          getValue: function(item, sortField) {
+            var val;
+            if (sortField === 'location' || !sortField) {
+              val = item.site_name;
+            } else if (sortField === 'distance') {
+              val = item.distance;
+            }
+            return val;
           },
-          href: function(state) {
-            return '//seventy.org/issues-index/council-redistricting';
-            // return '//www.philadelphiavotes.com/en/voters/elected-officials';
+          order: function(sortField) {
+            var val;
+            // if (sortField === 'date') {
+            //   val = 'desc';
+            // } else {
+            val = 'asc';
+            // }
+            return val;
           },
         },
-      },
-
-      slots: {
-        title: 'voting.topic.cityCouncilRedistricting',
+        // filters: [
+        //   {
+        //     type: 'time',
+        //     getValue: function(item) {
+        //       return item.requested_datetime;
+        //     },
+        //     label: 'From the last',
+        //     values: [
+        //       {
+        //         label: '30 days',
+        //         value: '30',
+        //         unit: 'days',
+        //         direction: 'subtract',
+        //       },
+        //       {
+        //         label: '90 days',
+        //         value: '90',
+        //         unit: 'days',
+        //         direction: 'subtract',
+        //       },
+        //       {
+        //         label: 'year',
+        //         value: '1',
+        //         unit: 'years',
+        //         direction: 'subtract',
+        //       },
+        //     ],
+        //   },
+        // ],
+        filterByText: {
+          label: 'Filter by',
+          fields: [
+            'service_name',
+            'address',
+          ],
+        },
+        mapOverlay: {
+          marker: 'circle',
+          style: {
+            radius: 6,
+            fillColor: '#ff3f3f',
+            color: '#ff0000',
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 1.0,
+            'z-index': 1,
+          },
+          hoverStyle: {
+            radius: 6,
+            fillColor: 'yellow',
+            color: '#ff0000',
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 1.0,
+            'z-index': 2,
+          },
+        },
         fields: [
-          {
-            label: 'voting.topic.oldCityCouncilDistrict',
-            value: function(state) {
-              const council = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office_label == "City Council";
-              });
-              return '<a href="http://' + council[0].website + '" target="_blank">' +
-                nth(council[0].district) + " Council District </a>";
-            },
-          },
-          {
-            label: 'voting.topic.newCityCouncilDistrict',
-            value: function(state) {
-              const council = state.sources.electedOfficialsFuture.data.rows.filter( function(item) {
-                return item.office_label == "City Council";
-              });
-              return '<a href="http://' + council[0].website + '" target="_blank">' +
-                nth(council[0].district) + " Council District </a>";
-            },
-          },
           // {
-          //   label: 'voting.topic.currentTerm',
-          //   value: function(state) {
-          //     const council = state.sources.electedOfficials.data.rows.filter( function(item) {
-          //       return item.office_label == "City Council";
-          //     });
-          //     return council[0].next_election - 4 + ' - ' + council[0].next_election;
+          //   label: 'Date',
+          //   value: function(state, item) {
+          //     return item.requested_datetime;
           //   },
+          //   nullValue: 'no date available',
+          //   transforms: [
+          //     'date',
+          //   ],
           // },
+          {
+            label: 'Location',
+            value: function(state, item) {
+              return item.site_name;
+            },
+          },
+          {
+            label: 'Type and Hours',
+            value: function(state, item) {
+              // if (item.media_url) {
+              //   return '<a target="_blank" href='+item.media_url+'>'+item.service_name+'</a>';
+              // }
+              return item.site_type;
+
+            },
+          },
+          {
+            label: 'Distance',
+            value: function(state, item) {
+              return parseInt(item.distance) + ' ft';
+            },
+          },
         ],
       },
-    }, // end table
+      slots: {
+        title: 'Nearby mail-in ballot drop-off locations',
+        data: 'votingSites',
+        items: function(state) {
+          var data = state.sources['votingSites'].data || [];
+          var rows = data.map(function(row){
+            var itemRow = row;
+            // var itemRow = Object.assign({}, row);
+            return itemRow;
+          });
+          return rows;
+        },
+      },
+    },
+    
   ],
   // zoomToShape: [ 'geojsonForTopic', 'markersForTopic' ],
   // geojsonForTopic: {

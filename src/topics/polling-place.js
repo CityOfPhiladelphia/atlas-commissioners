@@ -19,6 +19,7 @@ export default {
       options: {
         nullValue: 'None',
         externalLink: {
+          frontIcon: 'exclamation-triangle',
           action: function() {
             return 'pollingPlace.topic.verticalTable1.link';
           },
@@ -80,7 +81,23 @@ export default {
               }
             },
           },
+          {
+            label: 'pollingPlace.topic.lastUpdated',
+            value: function(state) {
+              if (state.sources.pollingPlaces.data) {
+                return 'pollingPlace.topic.lastUpdatedSentence';
+              }
+            },
+          },
         ],
+      },
+    },
+    {
+      type: 'externalLink',
+      options: {
+        // data: '<i class="fas fa-exclamation-triangle"></i> pollingplace.topic.externalLink1',
+        data: 'pollingPlace.topic.externalLink1',
+        frontIcon: 'exclamation-triangle',
       },
     },
   ],
