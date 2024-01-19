@@ -9,7 +9,7 @@ export default {
   key: 'mail-in-voting',
   icon: 'envelope',
   label: 'Mail-in Voting',
-  dataSources: [ 'divisions', 'pollingPlaces', 'electedOfficials', 'nextElectionAPI' ],
+  dataSources: [ 'votingSites' ],
   errorMessage: function() {
     return 'No voting assignment found for this address.';
   },

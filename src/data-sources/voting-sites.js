@@ -2,7 +2,7 @@ export default {
   id: 'voting-sites',
   type: 'http-get-nearby',
   dependent: 'none',
-  resettable: false,
+  // resettable: false,
   url: 'https://phl.carto.com:443/api/v2/sql',
   options: {
     table: 'voting_sites',
