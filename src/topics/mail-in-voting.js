@@ -21,6 +21,62 @@ export default {
       },
     },
     {
+      type: 'vertical-table',
+      slots: {
+        title: 'mailInVoting.topic.table1.title',
+      },
+    },
+
+    {
+      type: 'paragraph',
+      slots: {
+        text: 'mailInVoting.topic.paragraph1.text',
+        vshowProp: true,
+      },
+    },
+
+    {
+      type: 'any-header',
+      options: {
+        headerType: 'h4',
+        style: 'font-weight: bold;',
+      },
+      slots: {
+        text: 'mailInVoting.topic.h4_1',
+      },
+    },
+
+    {
+      type: 'paragraph',
+      slots: {
+        text: 'mailInVoting.topic.paragraph2.text',
+        vshowProp: true,
+      },
+    },
+
+    {
+      type: 'unordered-list',
+      // options: {
+      //   style: 'list-style: initial',
+      // },
+      slots: {
+        listItems: [
+          'mailInVoting.topic.ul1.li1',
+          'mailInVoting.topic.ul1.li2',
+          'mailInVoting.topic.ul1.li3',
+        ],
+      },
+    },
+
+    {
+      type: 'paragraph',
+      slots: {
+        text: 'mailInVoting.topic.paragraph3.text',
+        vshowProp: true,
+      },
+    },
+
+    {
       type: 'horizontal-table',
       options: {
         id: 'mailInVotingTable',

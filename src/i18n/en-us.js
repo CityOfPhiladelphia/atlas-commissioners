@@ -175,6 +175,26 @@ export default {
         "p1": "Mail-in ballot dropoff locations and availability may change for each election.\
         Check back closer to election day to get updated details about where you can drop off your mail-in ballot.",
       },
+      "table1": {
+        "title": "Important dates for mail-in voting in 2024",
+        // "p1": "All important dates for voters in 2023 have passed. See the <a href='https://vote.phila.gov/resources-data/important dates'>full election calendar for 2023</a>.",
+      },
+      "paragraph1": {
+        "text": "All mail-in voting dates in 2023 have passed. See the <a target='_blank' href='https://vote.phila.gov/voting/important-dates-for-voters/'>full election calendar for 2023</a>.",
+      },
+      "h4_1": "Mail-in ballot dropoff locations",
+      "paragraph2": {
+        "text": "Mail-in and absentee ballots can be dropped off at our Election Office, at a fixed drop box, or at a temporary mobile ballot return location.",
+      },
+      "ul1": {
+        "li1": "The Election Office is open Monday to Friday from 9am to 5pm and from 9am to 8pm on election day.",
+        "li2": "Fixed drop boxes may be used at all times up til 8pm on election day.",
+        "li3": "Mobile ballot returns are available on specific dates at each location.",
+      },
+      "paragraph3": {
+        "text": "Learn more including how to request a mail in or absentee ballot at <a target='_blank' href='https://vote.phila.gov/'>vote.phila.gov</a>.",
+      },
+
       "badge1": {
         "header": "Next Eligible Election Is",
         "content": "November 3, 2020",
