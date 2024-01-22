@@ -166,24 +166,14 @@ export default {
           },
         },
         fields: [
-          // {
-          //   label: 'Date',
-          //   value: function(state, item) {
-          //     return item.requested_datetime;
-          //   },
-          //   nullValue: 'no date available',
-          //   transforms: [
-          //     'date',
-          //   ],
-          // },
           {
-            label: 'Location',
+            label: 'mailInVoting.topic.horizontalTable1.location',
             value: function(state, item) {
               return item.site_name;
             },
           },
           {
-            label: 'Type and Hours',
+            label: 'mailInVoting.topic.horizontalTable1.typeAndHours',
             value: function(state, item) {
               // if (item.media_url) {
               //   return '<a target="_blank" href='+item.media_url+'>'+item.service_name+'</a>';
@@ -193,7 +183,7 @@ export default {
             },
           },
           {
-            label: 'Distance',
+            label: 'mailInVoting.topic.horizontalTable1.distance',
             value: function(state, item) {
               return (parseInt(item.distance)/5280).toFixed(2) + ' mi';
             },
@@ -201,7 +191,7 @@ export default {
         ],
       },
       slots: {
-        title: 'Nearby mail-in ballot drop-off locations',
+        title: 'mailInVoting.topic.horizontalTable1.title',
         data: 'votingSites',
         items: function(state) {
           var data = state.sources['votingSites'].data || [];

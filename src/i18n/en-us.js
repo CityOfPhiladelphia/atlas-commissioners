@@ -238,6 +238,12 @@ export default {
       "verticalTable2": {
         "link": "See all citywide, state, and federal representatives ",
       },
+      "horizontalTable1": {
+        "title": "Nearby mail-in ballot drop-off locations",
+        "location": "Location",
+        "typeAndHours": "Type and Hours",
+        "distance": "Distance",
+      },
     },
   },
   "electedOfficials": {
@@ -265,19 +271,60 @@ export default {
       "location": "Location",
       "accessibility": "Accessibility",
       "parking": "Parking",
-      "districtCouncilMember": "District Council Member",
       "cityHallOffice": "City Hall Office",
       "currentTerm": "Current Term",
       "term": "Term",
-      "callout1": {
-        "text": "The deadline to register for the next election is 15 days prior to the election. You can confirm your registration and learn about registering to vote at <a target='_blank' href='https://vote.phila.gov/'>vote.phila.gov</a>.",
-      },
       "pollingPlace": "Polling Place",
       "verticalTable1": {
-        "link": "Learn about your voting options if you cannot vote in person on Election Day ",
+        "title": "City Officials",
+        "districtCouncilMember": "District Council Member",
+        "atLargeCouncilMembers": "At-Large Council Members",
+        "mayor": "Mayor",
+        "districtAttorney": "District Attorney",
+        "controller": "Controller",
+        "cityCommissioners": "City Commissioners",
+        "sheriff": "Sheriff",
+        "registerOfWills": "Register of Wills",
       },
       "verticalTable2": {
-        "link": "See all citywide, state, and federal representatives ",
+        "title": "State Officials",
+        "stateHouseRepresentatives": "State House Representatives",
+        "stateSenator": "State Senator",
+        "governor": "Governor",
+        "lieutenantGovernor": "Lieutenant Governor",
+        "attorneyGeneral": "Attorney General",
+        "stateTreasurer": "State Treasurer",
+        "auditorGeneral": "Auditor General",
+      },
+      "verticalTable3": {
+        "title": "Federal Officials",
+        "congressionalRepresentative": "Congressional Representative",
+        "senators": "Senators",
+        "president": "President and Vice President",
+      },
+      "callout1": {
+        "text": "The city of Philadelphia is divided into 66 wards, each further broken down into \
+        divisions. Each division is capable of electing two party representatives: the \
+        committeepeople. The committeepeople in every ward then elect their ward leader \
+        and the ward leaders elect the Chairs of their respective City Committees. The \
+        <a target='_blank' href='https://phldems.org/'>Democratic City Committee</a> and \
+        <a target='_blank' href='https://www.phillygop.com/'>Republican City Committee</a> are the local political \
+        party organizations and work with the state and national level organizations (the DNC \
+        and RNC). Committeepeople and ward leaders encourage neighbors to vote, endorse \
+        candidates, and serve as resources for their neighborhood.",
+      },
+      "verticalTable4": {
+        "title": "Ward Leadership",
+        "wardAndDivision": "Ward and Division",
+        "totalDivisions": "Total Divisions",
+        "democraticWardLeader": "Democratic Ward Leader",
+      },
+      "horizontalTable1": {
+        "title": "City Ward Division Committeepeople",
+        "party": "Party",
+        "name": "Name",
+        "zipCode": "Zip Code",
+        "yearElected": "Year Elected",
       },
     },
   },

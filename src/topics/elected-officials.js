@@ -18,47 +18,74 @@ export default {
       type: 'vertical-table',
       options: {
         nullValue: 'None',
-        externalLink: {
-          action: function() {
-            return 'electedOfficials.topic.verticalTable2.link';
-          },
-          href: function(state) {
-            return '//vote.phila.gov/voting/current-elected-officials/';
-          },
-        },
+        // externalLink: {
+        //   action: function() {
+        //     return 'electedOfficials.topic.verticalTable1.link';
+        //   },
+        //   href: function(state) {
+        //     return '//vote.phila.gov/voting/current-elected-officials/';
+        //   },
+        // },
       },
       slots: {
-        title: 'electedOfficials.topic.electedRep',
+        title: 'electedOfficials.topic.verticalTable1.title',
         fields: [
           {
-            label: 'electedOfficials.topic.districtCouncilMember',
+            label: 'electedOfficials.topic.verticalTable1.districtCouncilMember',
             value: function(state) {
               const council = state.sources.electedOfficials.data.rows.filter( function(item) {
                 return item.office_label == "City Council";
               });
               return '<a href="http://' + council[0].website + '" target="_blank">' +
-                council[0].first_name +" " +council[0].last_name + " - " + nth(council[0].district) + " Council District </a>";
+                council[0].first_name +" " +council[0].last_name + " - " + nth(council[0].district) + " Council District </a> <br>" +
+                council[0].main_contact_address_2 + '<br>' +
+                phone(council[0].main_contact_phone_1) + ", " + phone(council[0].main_contact_phone_2) + '<br>\
+                F: '+ phone(council[0].main_contact_fax) + ' <br>\
+                <b><a href=mailto:"' + council[0].email + '">' + council[0].email + '</a></b> <br>\
+                Current Term: ' + (council[0].next_election-4) + ' - ' + council[0].next_election;
+            },
+            // Current Term ' + council[0].next_election - 4 + ' - ' + council[0].next_election;
+          },
+          {
+            label: 'electedOfficials.topic.verticalTable1.atLargeCouncilMembers',
+            value: function(state) {
+              return 'test';
             },
           },
           {
-            label: 'electedOfficials.topic.cityHallOffice',
+            label: 'electedOfficials.topic.verticalTable1.mayor',
             value: function(state) {
-              const council = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office_label == "City Council";
-              });
-              return council[0].main_contact_address_2 + '<br>' +
-                     phone(council[0].main_contact_phone_1) + ", " + phone(council[0].main_contact_phone_2) + '<br>\
-                      F: '+ phone(council[0].main_contact_fax) + ' <br>\
-                      <b><a href=mailto:"' + council[0].email + '">' + council[0].email + '</a></b>';
+              return 'mayor';
             },
           },
           {
-            label: 'electedOfficials.topic.currentTerm',
+            label: 'electedOfficials.topic.verticalTable1.districtAttorney',
             value: function(state) {
-              const council = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office_label == "City Council";
-              });
-              return council[0].next_election - 4 + ' - ' + council[0].next_election;
+              return 'districtAttorney';
+            },
+          },
+          {
+            label: 'electedOfficials.topic.verticalTable1.controller',
+            value: function(state) {
+              return 'controller';
+            },
+          },
+          {
+            label: 'electedOfficials.topic.verticalTable1.cityCommissioners',
+            value: function(state) {
+              return 'city commissioners';
+            },
+          },
+          {
+            label: 'electedOfficials.topic.verticalTable1.sheriff',
+            value: function(state) {
+              return 'sheriff';
+            },
+          },
+          {
+            label: 'electedOfficials.topic.verticalTable1.registerOfWills',
+            value: function(state) {
+              return 'register of wills';
             },
           },
         ],
@@ -67,123 +94,183 @@ export default {
     {
       type: 'vertical-table',
       options: {
-        subtitle: 'electedOfficials.topic.redistrictingSubtitle',
-        // subtitle: 'Some addresses will be represented by a new city council district starting in 2024. Residents will vote in the new district in the 2023 primary and general elections.',
         nullValue: 'None',
-        externalLink: {
-          action: function() {
-            // return 'Read more about the redistricting process ';
-            return 'electedOfficials.topic.redistrictingProcess';
+        // externalLink: {
+        //   action: function() {
+        //     return 'electedOfficials.topic.verticalTable2.link';
+        //   },
+        //   href: function(state) {
+        //     return '//vote.phila.gov/voting/current-elected-officials/';
+        //   },
+        // },
+      },
+      slots: {
+        title: 'electedOfficials.topic.verticalTable2.title',
+        fields: [
+          {
+            label: 'electedOfficials.topic.verticalTable2.stateHouseRepresentatives',
+            value: function(state) {
+              return 'state house representatives';
+            },
           },
-          href: function(state) {
-            return '//seventy.org/issues-index/council-redistricting';
-            // return '//www.philadelphiavotes.com/en/voters/elected-officials';
+          {
+            label: 'electedOfficials.topic.verticalTable2.stateSenator',
+            value: function(state) {
+              return 'state senator';
+            },
           },
+          {
+            label: 'electedOfficials.topic.verticalTable2.governor',
+            value: function(state) {
+              return 'governor';
+            },
+          },
+          {
+            label: 'electedOfficials.topic.verticalTable2.lieutenantGovernor',
+            value: function(state) {
+              return 'lieutenant governor';
+            },
+          },
+          {
+            label: 'electedOfficials.topic.verticalTable2.attorneyGeneral',
+            value: function(state) {
+              return 'attorney general';
+            },
+          },
+          {
+            label: 'electedOfficials.topic.verticalTable2.stateTreasurer',
+            value: function(state) {
+              return 'state treasurer';
+            },
+          },
+          {
+            label: 'electedOfficials.topic.verticalTable2.auditorGeneral',
+            value: function(state) {
+              return 'auditor general';
+            },
+          },
+        ],
+      },
+    },
+    {
+      type: 'vertical-table',
+      options: {
+        nullValue: 'None',
+        // externalLink: {
+        //   action: function() {
+        //     return 'electedOfficials.topic.verticalTable2.link';
+        //   },
+        //   href: function(state) {
+        //     return '//vote.phila.gov/voting/current-elected-officials/';
+        //   },
+        // },
+      },
+      slots: {
+        title: 'electedOfficials.topic.verticalTable3.title',
+        fields: [
+          {
+            label: 'electedOfficials.topic.verticalTable3.congressionalRepresentative',
+            value: function(state) {
+              return 'congressional representative';
+            },
+          },
+          {
+            label: 'electedOfficials.topic.verticalTable3.senators',
+            value: function(state) {
+              return 'senators';
+            },
+          },
+          {
+            label: 'electedOfficials.topic.verticalTable3.president',
+            value: function(state) {
+              return 'president and vice president';
+            },
+          },
+        ],
+      },
+    },
+    {
+      type: 'callout',
+      slots: {
+        text: 'electedOfficials.topic.callout1.text',
+      },
+    },
+    {
+      type: 'vertical-table',
+      options: {
+        nullValue: 'None',
+      },
+      slots: {
+        title: 'electedOfficials.topic.verticalTable4.title',
+        fields: [
+          {
+            label: 'electedOfficials.topic.verticalTable4.wardAndDivision',
+            value: function(state) {
+              return 'ward and division';
+            },
+          },
+          {
+            label: 'electedOfficials.topic.verticalTable4.totalDivisions',
+            value: function(state) {
+              return 'total divisions';
+            },
+          },
+          {
+            label: 'electedOfficials.topic.verticalTable4.democraticWardLeader',
+            value: function(state) {
+              return 'democratic ward leader';
+            },
+          },
+        ],
+      },
+    },
+    {
+      type: 'horizontal-table',
+      options: {
+        id: 'mailInVotingTable',
+        fields: [
+          {
+            label: 'electedOfficials.topic.horizontalTable1.party',
+            value: function(state, item) {
+              return item.site_name;
+            },
+          },
+          {
+            label: 'electedOfficials.topic.horizontalTable1.name',
+            value: function(state, item) {
+              return item.site_name;
+            },
+          },
+          {
+            label: 'electedOfficials.topic.horizontalTable1.zipCode',
+            value: function(state, item) {
+              return item.site_name;
+            },
+          },
+          {
+            label: 'electedOfficials.topic.horizontalTable1.yearElected',
+            value: function(state, item) {
+              return item.site_name;
+            },
+          },
+        ],
+      },
+      slots: {
+        title: 'electedOfficials.topic.horizontalTable1.title',
+        data: 'pollingPlaces',
+        items: function(state) {
+          var data = state.sources.pollingPlaces.data.rows || [];
+          console.log('data:', data);
+          var rows = data.map(function(row){
+            var itemRow = row;
+            // var itemRow = Object.assign({}, row);
+            return itemRow;
+          });
+          return rows;
         },
       },
 
-      slots: {
-        title: 'electedOfficials.topic.cityCouncilRedistricting',
-        fields: [
-          {
-            label: 'electedOfficials.topic.oldCityCouncilDistrict',
-            value: function(state) {
-              const council = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office_label == "City Council";
-              });
-              return '<a href="http://' + council[0].website + '" target="_blank">' +
-                nth(council[0].district) + " Council District </a>";
-            },
-          },
-          {
-            label: 'electedOfficials.topic.newCityCouncilDistrict',
-            value: function(state) {
-              const council = state.sources.electedOfficialsFuture.data.rows.filter( function(item) {
-                return item.office_label == "City Council";
-              });
-              return '<a href="http://' + council[0].website + '" target="_blank">' +
-                nth(council[0].district) + " Council District </a>";
-            },
-          },
-          // {
-          //   label: 'voting.topic.currentTerm',
-          //   value: function(state) {
-          //     const council = state.sources.electedOfficials.data.rows.filter( function(item) {
-          //       return item.office_label == "City Council";
-          //     });
-          //     return council[0].next_election - 4 + ' - ' + council[0].next_election;
-          //   },
-          // },
-        ],
-      },
-    }, // end table
-    // {
-    //   type: 'vertical-table',
-    //   options: {
-    //     condition: function(state) {
-    //       console.log('state:', state);
-    //       let og = state.sources.electedOfficials.data.rows.filter( function(item) {
-    //         return item.office_label == "City Council";
-    //       });
-    //       let newVal = state.sources.electedOfficialsFuture.data.rows.filter( function(item) {
-    //         return item.office_label == "City Council";
-    //       });
-    //       console.log('condition test, og:', og, 'newVal:', newVal);
-    //
-    //       let val = false;
-    //       if (og[0].district !== newVal[0].district) {
-    //         val = true;
-    //       }
-    //       return val;
-    //     },
-    //     nullValue: 'None',
-    //     externalLink: {
-    //       action: function() {
-    //         return 'electedOfficials.topic.verticalTable2.link';
-    //       },
-    //       href: function(state) {
-    //         return '//www.philadelphiavotes.com/en/voters/elected-officials';
-    //       },
-    //     },
-    //   },
-    //
-    //   slots: {
-    //     title: 'electedOfficials.topic.electedRepFuture',
-    //     fields: [
-    //       {
-    //         label: 'electedOfficials.topic.districtCouncilMember',
-    //         value: function(state) {
-    //           const council = state.sources.electedOfficialsFuture.data.rows.filter( function(item) {
-    //             return item.office_label == "City Council";
-    //           });
-    //           return '<a href="http://' + council[0].website + '" target="_blank">' +
-    //             council[0].first_name +" " +council[0].last_name + " - " + nth(council[0].district) + " Council District </a>";
-    //         },
-    //       },
-    //       {
-    //         label: 'electedOfficials.topic.cityHallOffice',
-    //         value: function(state) {
-    //           const council = state.sources.electedOfficialsFuture.data.rows.filter( function(item) {
-    //             return item.office_label == "City Council";
-    //           });
-    //           return council[0].main_contact_address_2 + '<br>' +
-    //                  phone(council[0].main_contact_phone_1) + ", " + phone(council[0].main_contact_phone_2) + '<br>\
-    //                   F: '+ phone(council[0].main_contact_fax) + ' <br>\
-    //                   <b><a href=mailto:"' + council[0].email + '">' + council[0].email + '</a></b>';
-    //         },
-    //       },
-    //       {
-    //         label: 'electedOfficials.topic.term',
-    //         value: function(state) {
-    //           const council = state.sources.electedOfficialsFuture.data.rows.filter( function(item) {
-    //             return item.office_label == "City Council";
-    //           });
-    //           return council[0].next_election - 4 + ' - ' + council[0].next_election;
-    //         },
-    //       },
-    //     ],
-    //   },
-    // }, // end table
+    },
   ],
   basemap: 'pwd',
   identifyFeature: 'address-marker',
