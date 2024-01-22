@@ -91,6 +91,7 @@ export default {
           style: {
             radius: 6,
             fillColor: '#ff3f3f',
+            borderColor: '#ff3f3f',
             color: '#ff0000',
             weight: 1,
             opacity: 1,
@@ -100,6 +101,7 @@ export default {
           hoverStyle: {
             radius: 6,
             fillColor: 'yellow',
+            borderColor: '#ff3f3f',
             color: '#ff0000',
             weight: 1,
             opacity: 1,
@@ -137,7 +139,7 @@ export default {
           {
             label: 'Distance',
             value: function(state, item) {
-              return parseInt(item.distance) + ' ft';
+              return (parseInt(item.distance)/5280).toFixed(2) + ' mi';
             },
           },
         ],
@@ -158,7 +160,7 @@ export default {
     },
     
   ],
-  // zoomToShape: [ 'geojsonForTopic', 'markersForTopic' ],
+  zoomToShape: [ 'reactiveCircleMarkers' ],
   // geojsonForTopic: {
   //   data: function(state) {
   //     return state.sources.divisions.data;
