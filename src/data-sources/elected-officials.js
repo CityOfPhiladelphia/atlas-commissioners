@@ -13,6 +13,7 @@ export default {
                           OR eo.office = 'state_house' AND eo.district = s.state_house \
                           OR eo.office = 'state_senate' AND eo.district = s.state_senate \
                           OR eo.office = 'us_house' AND eo.district = s.federal_house \
+                          OR eo.office != 'city_council' AND eo.office != 'state_house' AND eo.office != 'state_senate' AND eo.office != 'us_house' \
                 ";
       },// + "' or addresskey = '" + feature.properties.li_address_key.toString() + "'",
     },
