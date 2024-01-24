@@ -4,8 +4,10 @@ import es from './es';
 
 let i18n = {
   i18n: {
-    header: 'i18nBanner',
+    // header: 'i18nBanner',
     enabled: true,
+    banner: false,
+    selector: true,
     topics: [ 'voting' ],
     // topics: [],
     // languages: [ 'en-US', 'es' ],
