@@ -206,7 +206,8 @@ export default {
     },
     
   ],
-  zoomToShape: [ 'reactiveCircleMarkers' ],
+  zoom: 12,
+  // zoomToShape: [ 'reactiveCircleMarkers' ],
   // geojsonForTopic: {
   //   data: function(state) {
   //     return state.sources.divisions.data;
