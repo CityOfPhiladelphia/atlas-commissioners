@@ -109,8 +109,8 @@ mapboard({
   // defaultAddress: '1234 MARKET ST',
   // plugin: true,
   // app: {},
-  headerImg: 'philadelphia-city-commissioners-logo-edit_2.png',
-  smallHeaderImg: 'philadelphia-city-commissioners-logo-edit_small.png',
+  headerImg: 'philadelphia-city-commissioners-logo-edit_6.png',
+  smallHeaderImg: 'philadelphia-city-commissioners-logo-edit_small_6_2.png',
   resetDataOnGeocode: true,
   customComps,
   header: {
