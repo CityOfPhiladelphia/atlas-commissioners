@@ -5,6 +5,54 @@ const titleCase = transforms.titleCase.transform;
 const nth = transforms.nth.transform;
 let $t;
 
+function formatMember(council) {
+  // const website = '<a href="https://' + council[0].website + '" target="_blank">' + council[0].first_name +" " +council[0].last_name + " - " + nth(council[0].district) + " Council District</a>";
+  // const address = council[0].main_contact_address_2;
+  // const phone1 = phone(council[0].main_contact_phone_1) || '';
+  // const phone2 = phone(council[0].main_contact_phone_2) || '';
+  // const fax = 'F: '+ phone(council[0].main_contact_fax) || '';
+  // const email = '<b><a href=mailto:"' + council[0].email + '">' + council[0].email + '</a></b>';
+  // const term = 'Current Term: ' + (council[0].next_election-4) + ' - ' + council[0].next_election;
+  
+  const website = '<a href="https://' + council.website + '" target="_blank">' + council.first_name +" " + council.last_name + "</a>";
+  let district;
+  if (council.district != 0) {
+    district = nth(council.district);
+  } else {
+    district = '';
+  }
+  const districtName = "Council District";
+  const address = council.main_contact_address_2;
+  const phone1 = phone(council.main_contact_phone_1) || '';
+  const phone2 = phone(council.main_contact_phone_2) || '';
+  const fax = 'F: '+ phone(council.main_contact_fax) || '';
+  const email = '<b><a href=mailto:"' + council.email + '">' + council.email + '</a></b>';
+  const term = 'Current Term: ' + (council.next_election-4) + ' - ' + council.next_election;
+
+
+
+  let returnString = website;
+  if (district) {
+    returnString += ' - ' + district + " " + districtName + '<br>';
+  } else {
+    returnString += '<br>';
+  }
+  returnString += address + '<br>';
+  returnString += phone1;
+  if (phone2) {
+    returnString += ", " + phone2 + '<br>';
+  } else {
+    returnString += '<br>';
+  }
+  if (council.main_contact_fax) {
+    returnString += fax + '<br>';
+  }
+  returnString += email + '<br>';
+  returnString += term;
+
+  return returnString;
+}
+
 export default {
   key: 'elected-officials',
   icon: 'flag-usa',
@@ -36,15 +84,8 @@ export default {
               const council = state.sources.electedOfficials.data.rows.filter( function(item) {
                 return item.office_label == "City Council";
               });
-              return '<a href="https://' + council[0].website + '" target="_blank">' +
-                council[0].first_name +" " +council[0].last_name + " - " + nth(council[0].district) + " Council District </a> <br>" +
-                council[0].main_contact_address_2 + '<br>' +
-                phone(council[0].main_contact_phone_1) + ", " + phone(council[0].main_contact_phone_2) + '<br>\
-                F: '+ phone(council[0].main_contact_fax) + ' <br>\
-                <b><a href=mailto:"' + council[0].email + '">' + council[0].email + '</a></b> <br>\
-                Current Term: ' + (council[0].next_election-4) + ' - ' + council[0].next_election;
+              return formatMember(council[0]);
             },
-            // Current Term ' + council[0].next_election - 4 + ' - ' + council[0].next_election;
           },
           {
             label: 'electedOfficials.topic.verticalTable1.atLargeCouncilMembers',
@@ -54,10 +95,8 @@ export default {
               });
               let theString = '';
               for (let councilMember of councilAtLarge) {
-                if (councilMember.last_name != null) {
-                  theString += '<a href="https://' + councilMember.website + '" target="_blank">' +
-                  councilMember.first_name + " " + councilMember.last_name + '</a><br>';
-                }
+                theString += formatMember(councilMember);
+                theString += '<br><br>';
               }
               return theString;
             },
