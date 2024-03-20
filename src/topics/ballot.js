@@ -53,12 +53,12 @@ export default {
       },
     },
 
-    {
-      type: 'vertical-table',
-      slots: {
-        title: 'ballot.topic.table1.title',
-      },
-    },
+    // {
+    //   type: 'vertical-table',
+    //   slots: {
+    //     title: 'ballot.topic.table1.title',
+    //   },
+    // },
 
     {
       type: 'paragraph',
@@ -68,12 +68,12 @@ export default {
       },
     },
 
-    {
-      type: 'vertical-table',
-      slots: {
-        title: 'ballot.topic.table2.title',
-      },
-    },
+    // {
+    //   type: 'vertical-table',
+    //   slots: {
+    //     title: 'ballot.topic.table2.title',
+    //   },
+    // },
 
     {
       type: 'externalLink',

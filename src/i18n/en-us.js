@@ -74,10 +74,10 @@ export default {
       },
       "table2": {
         "title": "Previous election sample ballots and results (2019 to present)",
-        "p1": "All important dates for voters in 2023 have passed. See the <a href='https://vote.phila.gov/resources-data/important dates'>full election calendar for 2023</a>.",
+        // "p1": "All important dates for voters in 2023 have passed. See the <a href='https://vote.phila.gov/resources-data/important dates'>full election calendar for 2023</a>.",
       },
       "links": {
-        "link1": "Check your voter registration status",
+        "link1": "Check your voter registration status ",
       },
       // "hours": "Hours",
       // "electedRep": "Elected Representatives",
@@ -176,7 +176,7 @@ export default {
         Check back closer to election day to get updated details about where you can drop off your mail-in ballot.",
       },
       "table1": {
-        "title": "Important dates for mail-in voting in 2024",
+        "title": "Important dates for mail-in voting",
         // "p1": "All important dates for voters in 2023 have passed. See the <a href='https://vote.phila.gov/resources-data/important dates'>full election calendar for 2023</a>.",
       },
       "paragraph1": {

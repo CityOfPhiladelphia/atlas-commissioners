@@ -169,7 +169,10 @@ export default {
           {
             label: 'mailInVoting.topic.horizontalTable1.location',
             value: function(state, item) {
-              return item.site_name;
+              let name = item.site_name;
+              name += '<br>' + item.street_address;
+              return name;
+              // return item.site_name += '<br>test';
             },
           },
           {
@@ -178,7 +181,9 @@ export default {
               // if (item.media_url) {
               //   return '<a target="_blank" href='+item.media_url+'>'+item.service_name+'</a>';
               // }
-              return item.site_type;
+              let type = item.site_type;
+              type += '<br>(Location dates and hours here)';
+              return type;
 
             },
           },
