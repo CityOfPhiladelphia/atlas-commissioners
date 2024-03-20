@@ -5,49 +5,69 @@ const titleCase = transforms.titleCase.transform;
 const nth = transforms.nth.transform;
 let $t;
 
-function formatMember(council) {
-  // const website = '<a href="https://' + council[0].website + '" target="_blank">' + council[0].first_name +" " +council[0].last_name + " - " + nth(council[0].district) + " Council District</a>";
-  // const address = council[0].main_contact_address_2;
-  // const phone1 = phone(council[0].main_contact_phone_1) || '';
-  // const phone2 = phone(council[0].main_contact_phone_2) || '';
-  // const fax = 'F: '+ phone(council[0].main_contact_fax) || '';
-  // const email = '<b><a href=mailto:"' + council[0].email + '">' + council[0].email + '</a></b>';
-  // const term = 'Current Term: ' + (council[0].next_election-4) + ' - ' + council[0].next_election;
+function formatMember(person, districtLabel) {
   
-  const website = '<a href="https://' + council.website + '" target="_blank">' + council.first_name +" " + council.last_name + "</a>";
+  const website = '<a href="https://' + person.website + '" target="_blank">' + person.first_name +" " + person.last_name + "</a>";
+  
   let district;
-  if (council.district != 0) {
-    district = nth(council.district);
+  if (person.district != 0 && districtLabel) {
+    district = nth(person.district);
   } else {
     district = '';
   }
-  const districtName = "Council District";
-  const address = council.main_contact_address_2;
-  const phone1 = phone(council.main_contact_phone_1) || '';
-  const phone2 = phone(council.main_contact_phone_2) || '';
-  const fax = 'F: '+ phone(council.main_contact_fax) || '';
-  const email = '<b><a href=mailto:"' + council.email + '">' + council.email + '</a></b>';
-  const term = 'Current Term: ' + (council.next_election-4) + ' - ' + council.next_election;
 
+  let addressLine1;
+  if (person.main_contact_address_1) {
+    addressLine1 = person.main_contact_address_1 || '';
+  }
+  let addressLine2;
+  if (person.main_contact_address_2) {
+    addressLine2 = person.main_contact_address_2 || '';
+  }
 
+  let city;
+  if (person.main_contact_city != 'Philadelphia') {
+    city = person.main_contact_city;
+  }
+  const state = person.main_contact_state || '';
+  const zip = person.main_contact_zip || '';
+  
+  const phone1 = phone(person.main_contact_phone_1) || '';
+  const phone2 = phone(person.main_contact_phone_2) || '';
+  const fax = 'F: '+ phone(person.main_contact_fax) || '';
+  const email = '<b><a href=mailto:"' + person.email + '">' + person.email + '</a></b>';
+  const term = 'Current Term: ' + (person.next_election-4) + ' - ' + person.next_election;
 
   let returnString = website;
   if (district) {
-    returnString += ' - ' + district + " " + districtName + '<br>';
+    returnString += ' - ' + district + " " + districtLabel + '<br>';
   } else {
     returnString += '<br>';
   }
-  returnString += address + '<br>';
+
+  if (addressLine1) {
+    returnString += addressLine1 + '<br>';
+  }
+  if (addressLine2) {
+    returnString += addressLine2 + '<br>';
+  }
+
+  if (city) {
+    returnString += city + ', ' + state + ' ' + zip + '<br>';
+  }
+  
   returnString += phone1;
   if (phone2) {
     returnString += ", " + phone2 + '<br>';
   } else {
     returnString += '<br>';
   }
-  if (council.main_contact_fax) {
+  if (person.main_contact_fax && person.main_contact_fax != '0') {
     returnString += fax + '<br>';
   }
-  returnString += email + '<br>';
+  if (person.email) {
+    returnString += email + '<br>';
+  }
   returnString += term;
 
   return returnString;
@@ -81,22 +101,19 @@ export default {
           {
             label: 'electedOfficials.topic.verticalTable1.districtCouncilMember',
             value: function(state) {
-              const council = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office_label == "City Council";
-              });
-              return formatMember(council[0]);
+              const councilMember = state.sources.electedOfficials.data.rows.filter(person => person.office_label == "City Council");
+              const districtLabel = 'Council District';
+              return formatMember(councilMember[0], districtLabel);
             },
           },
           {
             label: 'electedOfficials.topic.verticalTable1.atLargeCouncilMembers',
             value: function(state) {
-              const councilAtLarge = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office == "city_council_at_large";
-              });
+              const councilAtLarge = state.sources.electedOfficials.data.rows.filter(person => person.office == "city_council_at_large");
               let theString = '';
-              for (let councilMember of councilAtLarge) {
+              for (const [ index, councilMember ] of councilAtLarge.entries()) {
                 theString += formatMember(councilMember);
-                theString += '<br><br>';
+                index < councilAtLarge.length - 1 ? theString += '<br><br>' : theString += '';
               }
               return theString;
             },
@@ -104,44 +121,33 @@ export default {
           {
             label: 'electedOfficials.topic.verticalTable1.mayor',
             value: function(state) {
-              const mayor = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office == "mayor";
-              });
-              return '<a href="https://' + mayor[0].website + '" target="_blank">' +
-              mayor[0].first_name + " " + mayor[0].last_name + '</a><br>';
+              const mayor = state.sources.electedOfficials.data.rows.filter(person => person.office == "mayor");
+              return formatMember(mayor[0]);
             },
           },
           {
             label: 'electedOfficials.topic.verticalTable1.districtAttorney',
             value: function(state) {
-              const districtAttorney = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office == "district_attorney";
-              });
-              return '<a href="https://' + districtAttorney[0].website + '" target="_blank">' +
-              districtAttorney[0].first_name + " " + districtAttorney[0].last_name + '</a><br>';
+              const districtAttorney = state.sources.electedOfficials.data.rows.filter(person => person.office == "district_attorney");
+              return formatMember(districtAttorney[0]);
             },
           },
           {
             label: 'electedOfficials.topic.verticalTable1.controller',
             value: function(state) {
-              const controller = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office == "city_controller";
-              });
-              return '<a href="' + controller[0].website + '" target="_blank">' +
-              controller[0].first_name + " " + controller[0].last_name + '</a><br>';
+              const controller = state.sources.electedOfficials.data.rows.filter(person => person.office == "city_controller");
+              return formatMember(controller[0]);
             },
           },
           {
             label: 'electedOfficials.topic.verticalTable1.cityCommissioners',
             value: function(state) {
-              const commissioners = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office == "city_commissioners";
-              });
+              const commissioners = state.sources.electedOfficials.data.rows.filter(person => person.office == "city_commissioners");
               let theString = '';
-              for (let commissioner of commissioners) {
+              for (const [ index, commissioner ] of commissioners.entries()) {
                 if (commissioner.last_name != null) {
-                  theString += '<a href="' + commissioner.website + '" target="_blank">' +
-                  commissioner.first_name + " " + commissioner.last_name + '</a><br>';
+                  theString += formatMember(commissioner);
+                  index < commissioners.length - 1 ? theString += '<br><br>' : theString += '';
                 }
               }
               return theString;
@@ -150,21 +156,15 @@ export default {
           {
             label: 'electedOfficials.topic.verticalTable1.sheriff',
             value: function(state) {
-              const sheriff = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office == "sheriff";
-              });
-              return '<a href="https://' + sheriff[0].website + '" target="_blank">' +
-              sheriff[0].first_name + " " + sheriff[0].last_name + '</a><br>';
+              const sheriff = state.sources.electedOfficials.data.rows.filter(person => person.office == "sheriff");
+              return formatMember(sheriff[0]);
             },
           },
           {
             label: 'electedOfficials.topic.verticalTable1.registerOfWills',
             value: function(state) {
-              const registerOfWills = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office == "register_of_wills";
-              });
-              return '<a href="https://' + registerOfWills[0].website + '" target="_blank">' +
-              registerOfWills[0].first_name + " " + registerOfWills[0].last_name + '</a><br>';
+              const registerOfWills = state.sources.electedOfficials.data.rows.filter(person => person.office == "register_of_wills");
+              return formatMember(registerOfWills[0]);
             },
           },
         ],
@@ -174,14 +174,6 @@ export default {
       type: 'vertical-table',
       options: {
         nullValue: 'None',
-        // externalLink: {
-        //   action: function() {
-        //     return 'electedOfficials.topic.verticalTable2.link';
-        //   },
-        //   href: function(state) {
-        //     return '//vote.phila.gov/voting/current-elected-officials/';
-        //   },
-        // },
       },
       slots: {
         title: 'electedOfficials.topic.verticalTable2.title',
@@ -189,82 +181,52 @@ export default {
           {
             label: 'electedOfficials.topic.verticalTable2.stateHouseRepresentatives',
             value: function(state) {
-              const stateHouse = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office == "state_house";
-              });
-              return '<a href="https://' + stateHouse[0].website + '" target="_blank">' +
-                stateHouse[0].first_name +" " +stateHouse[0].last_name + " - " + nth(stateHouse[0].district) + " District </a> <br>" +
-                stateHouse[0].main_contact_address_2 + '<br>' +
-                phone(stateHouse[0].main_contact_phone_1) + ", " + phone(stateHouse[0].main_contact_phone_2) + '<br>\
-                F: '+ phone(stateHouse[0].main_contact_fax) + ' <br>\
-                <b><a href=mailto:"' + stateHouse[0].email + '">' + stateHouse[0].email + '</a></b> <br>\
-                Current Term: ' + (stateHouse[0].next_election-4) + ' - ' + stateHouse[0].next_election;
+              const stateHouse = state.sources.electedOfficials.data.rows.filter(person => person.office == "state_house");
+              const districtLabel = 'District';
+              return formatMember(stateHouse[0], districtLabel);
             },
           },
           {
             label: 'electedOfficials.topic.verticalTable2.stateSenator',
             value: function(state) {
-              const stateSenate = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office == "state_senate";
-              });
-              return '<a href="https://' + stateSenate[0].website + '" target="_blank">' +
-                stateSenate[0].first_name +" " +stateSenate[0].last_name + " - " + nth(stateSenate[0].district) + " District </a> <br>" +
-                stateSenate[0].main_contact_address_1 + '<br>' +
-                stateSenate[0].main_contact_address_2 + '<br>' +
-                phone(stateSenate[0].main_contact_phone_1) + ", " + phone(stateSenate[0].main_contact_phone_2) + '<br>\
-                F: '+ phone(stateSenate[0].main_contact_fax) + ' <br>\
-                <b><a href=mailto:"' + stateSenate[0].email + '">' + stateSenate[0].email + '</a></b> <br>\
-                Current Term: ' + (stateSenate[0].next_election-4) + ' - ' + stateSenate[0].next_election;
+              const stateSenate = state.sources.electedOfficials.data.rows.filter(person => person.office == "state_senate");
+              const districtLabel = 'District';
+              return formatMember(stateSenate[0], districtLabel);
             },
           },
           {
             label: 'electedOfficials.topic.verticalTable2.governor',
             value: function(state) {
-              const governor = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office == "governor";
-              });
-              return '<a href="https://' + governor[0].website + '" target="_blank">' +
-              governor[0].first_name + " " + governor[0].last_name + '</a><br>';
+              const governor = state.sources.electedOfficials.data.rows.filter(person => person.office == "governor");
+              return formatMember(governor[0]);
             },
           },
           {
             label: 'electedOfficials.topic.verticalTable2.lieutenantGovernor',
             value: function(state) {
-              const ltGovernor = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office == "lt_governor";
-              });
-              return '<a href="https://' + ltGovernor[0].website + '" target="_blank">' +
-              ltGovernor[0].first_name + " " + ltGovernor[0].last_name + '</a><br>';
+              const ltGovernor = state.sources.electedOfficials.data.rows.filter(person => person.office == "lt_governor");
+              return formatMember(ltGovernor[0]);
             },
           },
           {
             label: 'electedOfficials.topic.verticalTable2.attorneyGeneral',
             value: function(state) {
-              const attorneyGeneral = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office == "attorney_general";
-              });
-              return '<a href="https://' + attorneyGeneral[0].website + '" target="_blank">' +
-              attorneyGeneral[0].first_name + " " + attorneyGeneral[0].last_name + '</a><br>';
+              const attorneyGeneral = state.sources.electedOfficials.data.rows.filter(person => person.office == "attorney_general");
+              return formatMember(attorneyGeneral[0]);
             },
           },
           {
             label: 'electedOfficials.topic.verticalTable2.stateTreasurer',
             value: function(state) {
-              const stateTreasurer = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office == "state_treasurer";
-              });
-              return '<a href="https://' + stateTreasurer[0].website + '" target="_blank">' +
-              stateTreasurer[0].first_name + " " + stateTreasurer[0].last_name + '</a><br>';
+              const stateTreasurer = state.sources.electedOfficials.data.rows.filter(person => person.office == "state_treasurer");
+              return formatMember(stateTreasurer[0]);
             },
           },
           {
             label: 'electedOfficials.topic.verticalTable2.auditorGeneral',
             value: function(state) {
-              const auditorGeneral = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office == "auditor_general";
-              });
-              return '<a href="https://' + auditorGeneral[0].website + '" target="_blank">' +
-              auditorGeneral[0].first_name + " " + auditorGeneral[0].last_name + '</a><br>';
+              const auditorGeneral = state.sources.electedOfficials.data.rows.filter(person => person.office == "auditor_general");
+              return formatMember(auditorGeneral[0]);
             },
           },
         ],
@@ -274,14 +236,6 @@ export default {
       type: 'vertical-table',
       options: {
         nullValue: 'None',
-        // externalLink: {
-        //   action: function() {
-        //     return 'electedOfficials.topic.verticalTable2.link';
-        //   },
-        //   href: function(state) {
-        //     return '//vote.phila.gov/voting/current-elected-officials/';
-        //   },
-        // },
       },
       slots: {
         title: 'electedOfficials.topic.verticalTable3.title',
@@ -289,29 +243,20 @@ export default {
           {
             label: 'electedOfficials.topic.verticalTable3.congressionalRepresentative',
             value: function(state) {
-              const usHouse = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office == "us_house";
-              });
-              return '<a href="https://' + usHouse[0].website + '" target="_blank">' +
-                usHouse[0].first_name +" " +usHouse[0].last_name + " - " + nth(usHouse[0].district) + " District </a> <br>" +
-                usHouse[0].main_contact_address_2 + '<br>' +
-                phone(usHouse[0].main_contact_phone_1) + ", " + phone(usHouse[0].main_contact_phone_2) + '<br>\
-                F: '+ phone(usHouse[0].main_contact_fax) + ' <br>\
-                <b><a href=mailto:"' + usHouse[0].email + '">' + usHouse[0].email + '</a></b> <br>\
-                Current Term: ' + (usHouse[0].next_election-4) + ' - ' + usHouse[0].next_election;
+              const usHouse = state.sources.electedOfficials.data.rows.filter(person => person.office == "us_house");
+              return formatMember(usHouse[0]);
             },
           },
           {
             label: 'electedOfficials.topic.verticalTable3.senators',
             value: function(state) {
-              const senators = state.sources.electedOfficials.data.rows.filter( function(item) {
-                return item.office == "us_senate";
-              });
+              const senators = state.sources.electedOfficials.data.rows.filter(person => person.office == "us_senate");
               let theString = '';
-              for (let senator of senators) {
+              // for (let senator of senators) {
+              for (const [ index, senator ] of senators.entries()) {
                 if (senator.last_name != null) {
-                  theString += '<a href="https://' + senator.website + '" target="_blank">' +
-                  senator.first_name + " " + senator.last_name + '</a><br>';
+                  theString += formatMember(senator);
+                  index < senators.length - 1 ? theString += '<br><br>' : theString += '';
                 }
               }
               return theString;

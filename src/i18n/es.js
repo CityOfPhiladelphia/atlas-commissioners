@@ -6,8 +6,8 @@ export default {
   },
   "default": {
     "introPage": {
-      "introTitle": "Philadelphila's Voter Hub for personalized election information",
-      "p3": "Search your home address or click on the map to:",
+      "introTitle": "Spanish Philadelphia's Voter Hub for personalized election information",
+      "p3": "Spanish Search your home address or click on the map to:",
       "ul1": {
         "li1": "Find your polling place",
         "li2": "Check upcoming election dates",
